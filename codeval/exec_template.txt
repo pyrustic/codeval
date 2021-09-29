@@ -1,0 +1,25 @@
+# code submitted by user
+{code}
+
+# run entry point function
+try:
+    import time
+    time_a = time.perf_counter()
+    cache = {fname}({kwargs})
+    time_b = time.perf_counter()
+except Exception as e:
+    raise CodevalFunctionError(e) from e
+
+# test the entry point function output
+try:
+    assert cache == {output}
+except AssertionError as e:
+    raise CodevalOutputError(e) from e
+
+# test max_time
+if {max_time}:
+    time_elapsed = time_b - time_a
+    try:
+        assert time_elapsed <= {max_time}
+    except AssertionError as e:
+        raise CodevalMaxTime(e) from e
